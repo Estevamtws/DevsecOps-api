@@ -252,7 +252,7 @@ jobs:
 
       - name: Build e push da imagem (tags latest e SHA)
         id: build-push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: true
