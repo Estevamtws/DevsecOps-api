@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do codigo (historico completo)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -52,7 +52,7 @@ jobs:
       image: semgrep/semgrep
     steps:
       - name: Checkout do codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Rodar Semgrep com as regras padrao de C# e as regras proprias do projeto
         run: semgrep scan --config p/csharp --config .semgrep/regras.yml --severity ERROR --error
@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar o .NET SDK 10
         uses: actions/setup-dotnet@v4
@@ -95,7 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar o .NET SDK 10
         uses: actions/setup-dotnet@v4
@@ -139,7 +139,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Rodar Checkov no Dockerfile
         run: |
@@ -163,7 +163,7 @@ jobs:
       - iac-dockerfile
     steps:
       - name: Checkout do codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Build da imagem Docker
         run: docker build -t api-devsecops:teste .
@@ -237,7 +237,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout do codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Login no GitHub Container Registry (ghcr.io)
         uses: docker/login-action@v3
