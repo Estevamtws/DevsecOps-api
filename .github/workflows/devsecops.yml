@@ -267,7 +267,4 @@ jobs:
         run: cosign sign --yes "${{ steps.nome-imagem.outputs.imagem }}@${{ steps.build-push.outputs.digest }}"
 
       - name: Verificar a assinatura da imagem
-        run: |
-          cosign verify "${{ steps.nome-imagem.outputs.imagem }}@${{ steps.build-push.outputs.digest }}" \
-            --certificate-identity-regexp "https://github.com/${{ github.repository }}/.*" \
-            --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
+        run: cosign verify "${{ steps.nome-imagem.outputs.imagem }}@${{ steps.build-push.outputs.digest }}" --certificate-identity-regexp "https://github.com/${{ github.repository }}/.*" --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
