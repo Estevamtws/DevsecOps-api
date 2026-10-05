@@ -1,0 +1,21 @@
+# DEMONSTRACAO DE VULNERABILIDADE - NAO USAR EM CODIGO REAL.
+#
+# Esta versao do Dockerfile nao define um usuario sem privilegios (USER),
+# entao o container roda como root por padrao, e tambem nao possui a
+# instrucao HEALTHCHECK. Ambos sao praticas que o Checkov (job 5,
+# "IaC / Dockerfile") verifica e reporta como falha.
+#
+# Para demonstrar: renomeie este arquivo para "Dockerfile" na raiz do
+# projeto real (substituindo temporariamente o Dockerfile correto) e rode
+# o Checkov novamente.
+
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
+WORKDIR /build
+COPY src/DevSecOpsApi/ src/DevSecOpsApi/
+RUN dotnet publish src/DevSecOpsApi/DevSecOpsApi.csproj -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine
+WORKDIR /app
+COPY --from=build /app/publish ./
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "api.dll"]

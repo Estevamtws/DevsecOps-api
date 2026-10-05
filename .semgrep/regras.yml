@@ -1,0 +1,21 @@
+# Regras proprias do Semgrep para este projeto (C#).
+# Complementam o conjunto padrao "p/csharp" usado no pipeline.
+rules:
+  - id: sql-concatenada-em-sqlcommand
+    languages: [csharp]
+    severity: ERROR
+    message: >
+      Consulta SQL montada por string nao literal (concatenacao ou interpolacao) e executada
+      via SqlCommand. Isso permite SQL Injection. Use SqlCommand com SqlParameter (@parametro).
+    metadata:
+      categoria: seguranca
+      cwe: "CWE-89: SQL Injection"
+    patterns:
+      - pattern-either:
+          - pattern: new SqlCommand($SQL)
+          - pattern: new SqlCommand($SQL, $CONEXAO)
+          - pattern: $CMD.CommandText = $SQL
+      - metavariable-pattern:
+          metavariable: $SQL
+          patterns:
+            - pattern-not: '"..."'

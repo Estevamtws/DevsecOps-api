@@ -1,0 +1,12 @@
+# Configuracao do Gitleaks para este projeto.
+# Usa todas as regras padrao da ferramenta e ignora apenas a pasta de
+# demonstracoes, que contem codigo propositalmente inseguro usado na apresentacao.
+
+title = "Configuracao Gitleaks - Pipeline DevSecOps"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Ignora a pasta de demonstracoes usada na apresentacao"
+paths = ['''^demonstracoes/''']

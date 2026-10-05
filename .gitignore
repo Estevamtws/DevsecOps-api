@@ -1,0 +1,33 @@
+# .NET (build e publicacao)
+bin/
+obj/
+publish/
+TestResults/
+*.user
+*.suo
+*.userprefs
+*.binlog
+launchSettings.json
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+.vscode/
+*.DotSettings.user
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Relatorios de ferramentas de seguranca gerados localmente
+relatorio-zap.html
+sbom.json
+
+# Ferramentas e arquivos locais que nao fazem parte do projeto
+oracleJdk-27/
+.claude/
+.github/modernize/
+src/DevSecOpsApi/.github/

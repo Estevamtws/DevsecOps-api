@@ -1,0 +1,14 @@
+DEMONSTRACAO DE VULNERABILIDADE - NAO USAR EM CODIGO REAL.
+
+Esta e uma dependencia NuGet vulneravel conhecida: log4net 2.0.8, afetada pela
+falha critica CVE-2018-1285 (XXE - entidades externas em XML, CVSS 9.8), que
+corrigiu-se na versao 2.0.10.
+
+Para demonstrar a deteccao pelo Trivy (job 4, "Dependencias e SBOM"),
+adicione o trecho abaixo dentro do <ItemGroup> de PackageReference do arquivo
+src/DevSecOpsApi/DevSecOpsApi.csproj:
+
+    <PackageReference Include="log4net" Version="2.0.8" />
+
+O Trivy deve encontrar a vulnerabilidade CRITICAL e corrigivel (ha versao
+mais nova disponivel), fazendo o job 4 falhar.
