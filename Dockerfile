@@ -19,7 +19,7 @@ COPY src/DevSecOpsApi/ src/DevSecOpsApi/
 RUN dotnet publish src/DevSecOpsApi/DevSecOpsApi.csproj -c Release -o /app/publish --no-restore
 
 # ---------- Etapa final ----------
-FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine
+FROM mcr.microsoft.com/dotnet/aspnet:11.0-alpine
 
 WORKDIR /app
 
